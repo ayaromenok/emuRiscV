@@ -9,21 +9,46 @@ YRegisterUi::YRegisterUi(QWidget *parent)
 {
     loRegs = new QHBoxLayout();
     addRegistersXb();
-    //addRegistersXd();
+    addRegistersXh();
+    addRegistersXd();
     this->setLayout(loRegs);
     //qDebug() <<this->children();
 
-    setRegisterX(0,27);
-    setRegisterX(2,27);
+    setRegisterX(0,1);
+    setRegisterX(1,12);
+    setRegisterX(2,123);
+    setRegisterX(3,1234);
+    setRegisterX(4,12345);
+    setRegisterX(5,123456);
+    setRegisterX(6,1234567);
+    setRegisterX(7,123456789);
+    setRegisterX(8,1234567890);
 }//YRegisterUi()
 
 void YRegisterUi::setRegisterX(int num, int value){    
+    //binary mode
     if(this->findChild<QLabel *>("lbXb_"+QString::number(num))){
         QString _value(QString::number(value,2));
         QString _sValue("00000000000000000000000000000000");
         this->findChild<QLabel *>("lbXb_"+QString::number(num))->setText(_sValue.chopped(_value.length())+_value);
     } else {
-        qWarning() << "Register " << num << "not found";
+        qWarning() << "Register:binary " << num << "not found";
+    }//if
+    //hexademicalmode
+    if(this->findChild<QLabel *>("lbXh_"+QString::number(num))){
+        QString _value(QString::number(value,16));
+        QString _sValue("00000000");
+        this->findChild<QLabel *>("lbXh_"+QString::number(num))->setText(_sValue.chopped(_value.length())+_value.toUpper());
+    } else {
+        qWarning() << "Register:hexademical " << num << "not found";
+    }//if
+    //decemical
+    if(this->findChild<QLabel *>("lbXd_"+QString::number(num))){
+        QString _value(QString::number(value,10));
+        QString _sValue("0000000000");
+        this->findChild<QLabel *>("lbXd_"+QString::number(num))->setText(_sValue.chopped(_value.length())+_value.toUpper());
+    } else {
+        qWarning() << "Register:hexademical " << num << "not found";
     }//if
 }//setRegisterX()
 
@@ -44,5 +69,38 @@ YRegisterUi::addRegistersXb(){
     if(loRegs){
         loRegs->addLayout(_loRegsXb);
     }
+}//addRegistersXb()
 
+void
+YRegisterUi::addRegistersXh(){
+    QVBoxLayout *_loRegsXh = new QVBoxLayout();
+    QLabel *_lbRegXhName = new QLabel("X:hex");
+    _lbRegXhName->setObjectName("_lbRegXbName");
+    _loRegsXh->addWidget(_lbRegXhName);
+    for (int i=0; i<32; i++){
+        QLabel *_lbXh = new QLabel("00000000");
+        _lbXh->setMinimumWidth(240);
+        _lbXh->setObjectName("lbXh_"+QString::number(i));
+        _loRegsXh->addWidget(_lbXh);
+    }//for
+    if(loRegs){
+        loRegs->addLayout(_loRegsXh);
+    }
+}//addRegistersXb()
+
+void
+YRegisterUi::addRegistersXd(){
+    QVBoxLayout *_loRegsXd = new QVBoxLayout();
+    QLabel *_lbRegXdName = new QLabel("X:dec");
+    _lbRegXdName->setObjectName("_lbRegXdName");
+    _loRegsXd->addWidget(_lbRegXdName);
+    for (int i=0; i<32; i++){
+        QLabel *_lbXd = new QLabel("0000000000");
+        _lbXd->setMinimumWidth(240);
+        _lbXd->setObjectName("lbXd_"+QString::number(i));
+        _loRegsXd->addWidget(_lbXd);
+    }//for
+    if(loRegs){
+        loRegs->addLayout(_loRegsXd);
+    }
 }//addRegistersXb()

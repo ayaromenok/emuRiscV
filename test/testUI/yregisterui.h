@@ -16,6 +16,9 @@ signals:
 
 private:
     void addRegistersXb();
+    void addRegistersXd();
+    void addRegistersXh();
+
     QHBoxLayout*     loRegs;
 };
 
