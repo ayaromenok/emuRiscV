@@ -18,6 +18,8 @@ private:
     void addRegistersXb();
     void addRegistersXd();
     void addRegistersXh();
+    void addRegistersXName();
+    void addRegistersXDescr();
 
     QHBoxLayout*     loRegs;
 };
