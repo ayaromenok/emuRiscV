@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-class YRegisterUi;
+class YCentralWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -12,7 +12,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private:
-    void createRegistersUI();
-    YRegisterUi*    _uiRX;
+    void createCentralWidget();
+    YCentralWidget*     _centralWidget;
 };
 #endif // MAINWINDOW_H

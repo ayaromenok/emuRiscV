@@ -1,17 +1,16 @@
 #include "mainwindow.h"
-#include "yregisterui.h"
+#include "ycentralwidget.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent){
     setGeometry(0,0,1024,600);
-    createRegistersUI();
-
+    createCentralWidget();
 }
 void
-MainWindow::createRegistersUI(){
-    _uiRX = new YRegisterUi();
-    setCentralWidget(_uiRX);
+MainWindow::createCentralWidget(){
+    _centralWidget = new YCentralWidget();
+    setCentralWidget(_centralWidget);
 }
 
 MainWindow::~MainWindow(){

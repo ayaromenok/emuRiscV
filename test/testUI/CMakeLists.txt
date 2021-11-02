@@ -20,6 +20,8 @@ set(PROJECT_SOURCES
         mainwindow.h
         yregisterui.h
         yregisterui.cpp
+        ycentralwidget.h
+        ycentralwidget.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
